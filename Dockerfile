@@ -4,4 +4,5 @@ RUN apk --no-cache add certbot-nginx supervisor && mkdir /etc/letsencrypt && mkd
 COPY supervisord.conf /etc/supervisord.conf
 COPY supervisor.d/ /etc/supervisor/conf.d
 RUN (2>/dev/null crontab -l ; echo "0 3 * * * /usr/bin/certbot renew") | crontab -
+RUN (2>/dev/null crontab -l ; echo "0 5 * * * nginx -s reload") | crontab -
 CMD ["supervisord", "-c", "/etc/supervisord.conf"]
