@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+  nginx:
+    build: .
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - DOMAINS="devops.lviv.ua"
+      - EMAIL="taras@kramarets.net"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./letsencrypt:/etc/letsencrypt
